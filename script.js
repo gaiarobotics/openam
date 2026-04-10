@@ -32,18 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Button micro-interaction
     const gitBtn = document.querySelector('.git-btn');
-    if(gitBtn) {
+    if (gitBtn) {
         gitBtn.addEventListener('click', (e) => {
             e.preventDefault();
             gitBtn.innerHTML = 'Cloning Antimatter...';
             gitBtn.style.backgroundColor = '#10b981'; // Green success color
             gitBtn.style.boxShadow = '0 6px 20px rgba(16, 185, 129, 0.6)';
-            
+
             setTimeout(() => {
                 gitBtn.innerHTML = 'Warning: Local Density Anomaly';
                 gitBtn.style.backgroundColor = '#ef4444'; // Red warning
                 gitBtn.style.boxShadow = '0 6px 20px rgba(239, 68, 68, 0.6)';
             }, 1500);
+
+            setTimeout(() => {
+                modal.classList.remove('hidden');
+            }, 2500);
 
             setTimeout(() => {
                 gitBtn.innerHTML = `
@@ -56,11 +60,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Modal logic
+    const downloadBtns = document.querySelectorAll('a[href="#download"]');
+    const modal = document.getElementById('explanation-modal');
+    const closeModalBtn = document.querySelector('.close-modal');
+
+    if (modal) {
+        downloadBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.remove('hidden');
+            });
+        });
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    }
+
     // Initialize immediately visible elements
     setTimeout(() => {
         animatedElements.forEach(el => {
             const rect = el.getBoundingClientRect();
-            if(rect.top < window.innerHeight) {
+            if (rect.top < window.innerHeight) {
                 el.classList.add('visible');
             }
         });
