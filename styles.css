@@ -574,8 +574,9 @@ footer {
     z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 2rem;
+    overflow-y: auto;
     opacity: 1;
     transition: opacity var(--transition-fast);
 }
@@ -586,6 +587,7 @@ footer {
 }
 
 .modal-content {
+    margin: auto;
     max-width: 650px;
     padding: 3.5rem;
     border-radius: var(--radius-lg);
