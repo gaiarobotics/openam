@@ -638,7 +638,8 @@ footer {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .nav-links { display: none; }
+    .nav-links li { display: none; }
+    .nav-links li:last-child { display: block; }
     .hero, .two-col, .hardware-showcase {
         flex-direction: column;
         text-align: center;
